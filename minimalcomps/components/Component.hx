@@ -97,7 +97,7 @@ class Component extends Sprite {
     /**
      * Marks the component to be redrawn on the next frame.
      */
-    private function invalidate():Void {
+    #if !flash override #end public function invalidate():Void {
         if (_invalidated) 
             return;
 
