@@ -122,27 +122,32 @@ class List extends Component {
         var offset:Int = Math.floor(_scrollbar.value);
         var numItems:Int = Math.ceil(_height / _listItemHeight);
         numItems = Math.floor(Math.min(numItems, _items.length));
-        for (i in 0 ... numItems) {
-            var item:ListItem = cast(_itemHolder.getChildAt(i), ListItem);
-            if (offset + i < _items.length) {
-                item.data = _items[offset + i];
-            }
-            else {
-                item.data = "";
-            }
-            if (_alternateRows) {
-                item.defaultColor = ((offset + i) % 2 == 0) ? _defaultColor : _alternateColor;
-            }
-            else {
-                item.defaultColor = _defaultColor;
-            }
-            if (offset + i == _selectedIndex) {
-                item.selected = true;
-            }
-            else {
-                item.selected = false;
-            }
-        }
+		try{
+			for (i in 0 ... numItems) {
+				var item:ListItem = cast(_itemHolder.getChildAt(i), ListItem);
+				if (offset + i < _items.length) {
+					item.data = _items[offset + i];
+				}
+				else {
+					item.data = "";
+				}
+				if (_alternateRows) {
+					item.defaultColor = ((offset + i) % 2 == 0) ? _defaultColor : _alternateColor;
+				}
+				else {
+					item.defaultColor = _defaultColor;
+				}
+				if (offset + i == _selectedIndex) {
+					item.selected = true;
+				}
+				else {
+					item.selected = false;
+				}
+			}
+		}catch (e)
+		{
+			trace(e);
+		}
     }
 
     /**
